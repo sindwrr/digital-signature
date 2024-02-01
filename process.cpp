@@ -75,7 +75,7 @@ int process(std::ifstream& input, std::string inputName)
     std::ofstream output(newFile, std::ios::binary);
     if (!output.is_open())
     {
-        std::cerr << L"Error: cannot open the new file!" << std::endl;
+        std::cerr << "Error: cannot open the new file!" << std::endl;
         return 1;
     }
 
@@ -90,7 +90,7 @@ int process(std::ifstream& input, std::string inputName)
     if (foundSig)
     {
         for (int i = 0; i < lines.size() - 1; ++i)
-            output << lines[i] << std::endl;
+            output << lines[i];
 
         std::cout << "Signature deleted! Result is written in chosen file." << std::endl;            
     }
@@ -106,8 +106,7 @@ int process(std::ifstream& input, std::string inputName)
 
         // генерируем подпись и заносим ее в конец файла
         Signature sigGen(fileHash);
-        uint32_t sig = sigGen.generateSignature();
-
+        int sig = sigGen.generateSignature();
         output << "\nsig" << sig;
         std::cout << "Signature added! Result is written in chosen file." << std::endl;
     }
