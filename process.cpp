@@ -72,7 +72,7 @@ int process(std::ifstream& input, std::string inputName)
 
 
     // открываем новый файл
-    std::ofstream output(newFile, std::ios::binary);
+    std::ofstream output(newFile);
     if (!output.is_open())
     {
         std::cerr << "Error: cannot open the new file!" << std::endl;
@@ -90,7 +90,11 @@ int process(std::ifstream& input, std::string inputName)
     if (foundSig)
     {
         for (int i = 0; i < lines.size() - 1; ++i)
+        {
             output << lines[i];
+            if (i != lines.size() - 2)
+                output << '\n';
+        }
 
         std::cout << "Signature deleted! Result is written in chosen file." << std::endl;            
     }

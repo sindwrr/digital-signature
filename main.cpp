@@ -6,7 +6,7 @@ int main(int argc, char** argv)
     std::string fileName = argc == 1 ? "test.txt" : argv[1];
 
     // открываем файл
-    std::ifstream input(fileName, std::ios::binary);
+    std::ifstream input(fileName);
     if (!input.is_open())
     {
         std::cerr << "Error: cannot open the file!" << std::endl;
